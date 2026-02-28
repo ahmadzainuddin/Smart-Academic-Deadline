@@ -7,7 +7,7 @@ Aplikasi ini ialah versi Laravel untuk projek `Smart Academic Deadline` dengan:
 
 ## 1. Keperluan
 
-- PHP 8.2+
+- PHP 8.3+
 - Composer 2+
 - Node.js 18+ dan npm
 - MariaDB/MySQL
