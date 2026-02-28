@@ -16,7 +16,7 @@ Aplikasi ini ialah versi Laravel untuk projek `Smart Academic Deadline` dengan:
 ## 2. Setup Local
 
 ```bash
-cd laravel
+cd Smart-Academic-Deadline
 composer install
 npm install
 cp .env.example .env
@@ -28,7 +28,7 @@ php artisan key:generate
 ### Pilihan A: Import SQL siap
 
 ```bash
-mysql -u root -p < laravel/database/schema.sql
+mysql -u root -p < Smart-Academic-Deadline/database/schema.sql
 ```
 
 SQL ini akan:
@@ -48,7 +48,7 @@ COLLATE utf8mb4_unicode_ci;
 Kemudian:
 
 ```bash
-cd laravel
+cd Smart-Academic-Deadline
 php artisan migrate
 ```
 
@@ -81,14 +81,14 @@ Untuk production, guna:
 Terminal 1 (Laravel server):
 
 ```bash
-cd laravel
+cd Smart-Academic-Deadline
 php artisan serve
 ```
 
 Terminal 2 (Vite dev):
 
 ```bash
-cd laravel
+cd Smart-Academic-Deadline
 npm run dev
 ```
 
@@ -97,7 +97,7 @@ Akses: `http://127.0.0.1:8000`
 ## 6. Build Production (Local)
 
 ```bash
-cd laravel
+cd Smart-Academic-Deadline
 composer install --no-dev --optimize-autoloader
 npm install
 npm run build
@@ -105,7 +105,7 @@ npm run build
 
 ## 7. File/Folder Yang Perlu Upload (Shared Hosting/VPS)
 
-Upload semua dalam folder `laravel/` kecuali yang tak perlu.
+Upload semua dalam folder `Smart-Academic-Deadline/` kecuali yang tak perlu.
 
 Perlu upload:
 - `app/`
