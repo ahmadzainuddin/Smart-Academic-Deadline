@@ -127,73 +127,20 @@ Tak perlu upload:
 - `.git/`
 - fail temporary/editor
 
-## 8. Konfigurasi Nginx (Production)
-
-Contoh server block (`/etc/nginx/sites-available/smartaced.codemaster.my`):
-
-```nginx
-server {
-    listen 80;
-    server_name your-domain.com www.your-domain.com;
-
-    root /var/www/smartaced.codemaster.my/public;
-    index index.php index.html;
-
-    add_header X-Frame-Options "SAMEORIGIN";
-    add_header X-Content-Type-Options "nosniff";
-
-    charset utf-8;
-
-    location / {
-        try_files $uri $uri/ /index.php?$query_string;
-    }
-
-    location = /favicon.ico { access_log off; log_not_found off; }
-    location = /robots.txt  { access_log off; log_not_found off; }
-
-    error_page 404 /index.php;
-
-    location ~ \.php$ {
-        fastcgi_pass unix:/run/php/php8.3-fpm.sock;
-        fastcgi_index index.php;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-        fastcgi_param DOCUMENT_ROOT $realpath_root;
-    }
-
-    location ~ /\.(?!well-known).* {
-        deny all;
-    }
-}
-```
-
-Nota:
-- Tukar `server_name` ikut domain sebenar.
-- Tukar `root` ikut path sebenar projek.
-- Tukar `fastcgi_pass` ikut versi PHP-FPM server anda.
-
-Aktifkan config (Ubuntu/Debian):
-
-```bash
-sudo ln -s /etc/nginx/sites-available/smartaced.codemaster.my /etc/nginx/sites-enabled/
-sudo nginx -t
-sudo systemctl reload nginx
-```
-
-## 9. Permission Penting
+## 8. Permission Penting
 
 Pastikan writable:
 
 ```bash
-cd /var/www/smartaced.codemaster.my
+cd /var/www/Smart-Academic-Deadline
 sudo chown -R www-data:www-data storage bootstrap/cache
 sudo chmod -R 775 storage bootstrap/cache
 ```
 
-## 10. Final Step Lepas Deploy
+## 9. Final Step Lepas Deploy
 
 ```bash
-cd /var/www/smartaced.codemaster.my
+cd /var/www/Smart-Academic-Deadline
 php artisan migrate --force
 php artisan config:cache
 php artisan route:cache
@@ -204,10 +151,10 @@ Jika update frontend:
 - rebuild `npm run build`
 - upload semula `public/build`
 
-## 10.1 Rebuild Di VPS (Selepas Tukar Code Frontend)
+## 9.1 Rebuild Di VPS (Selepas Tukar Code Frontend)
 
 ```bash
-cd /var/www/smartaced.codemaster.my
+cd /var/www/Smart-Academic-Deadline
 npm install
 npm run build
 php artisan view:clear
@@ -219,7 +166,7 @@ Lepas siap:
 - hard refresh browser: `Ctrl/Cmd + Shift + R`
 - jika guna reverse proxy/CDN, purge cache sekali
 
-## 11. API Ringkas
+## 10. API Ringkas
 
 - `GET /api/health`
 - `GET /api/courses`
